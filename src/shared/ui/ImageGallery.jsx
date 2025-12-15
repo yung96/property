@@ -25,7 +25,7 @@ export const ImageGallery = ({ images = [], title = '' }) => {
           onSlideChange={(swiper) => {
             setActiveIndex(swiper.activeIndex);
           }}
-          className="h-96"
+          className="aspect-[4/3]"
         >
           {images.map((image, index) => (
             <SwiperSlide key={index}>
@@ -33,6 +33,7 @@ export const ImageGallery = ({ images = [], title = '' }) => {
                 src={image}
                 alt={`${title} - фото ${index + 1}`}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </SwiperSlide>
           ))}
