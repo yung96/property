@@ -11,6 +11,22 @@ export const CategoriesPage = () => {
 
   const city = Object.values(CITIES).find((c) => c.id === cityId);
 
+  // Получаем категории для конкретного города
+  const cityCategories = city?.categories || CATEGORIES;
+
+  // Сортируем категории только для городов с ценовыми диапазонами (Сочи)
+  // Для Крыма используем порядок как есть
+  const sortedCategories = cityCategories[0]?.minPrice !== undefined 
+    ? [...cityCategories].sort((a, b) => {
+        // Сначала группируем по типу
+        if (a.type !== b.type) {
+          return a.type === 'houses' ? -1 : 1;
+        }
+        // Внутри группы сортируем по минимальной цене
+        return a.minPrice - b.minPrice;
+      })
+    : cityCategories;
+
   const handleCategorySelect = (category) => {
     navigate(`/city/${cityId}/category/${category.id}/properties`);
   };
@@ -43,7 +59,7 @@ export const CategoriesPage = () => {
 
       {/* Categories Grid */}
       <div className="px-6 py-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        {CATEGORIES.map((category, index) => (
+        {sortedCategories.map((category, index) => (
           <CategoryCard
             key={category.id}
             category={category}

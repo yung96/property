@@ -23,12 +23,6 @@ export const PropertyDetailPage = () => {
     navigate(`/city/${cityId}/category/${categoryId}/properties`);
   };
 
-  const handleContact = () => {
-    hapticFeedback('success');
-    // Здесь можно добавить логику отправки заявки
-    alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-  };
-
   const handleCopyLink = () => {
     hapticFeedback('light');
     // Копирование ссылки

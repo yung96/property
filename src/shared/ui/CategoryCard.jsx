@@ -24,12 +24,14 @@ export const CategoryCard = ({ category, onClick, delay = 0 }) => {
         </h3>
 
         {/* Price Range */}
-        <p className="text-sm text-gray-400 mb-4">
-          {category.priceRange}
-        </p>
+        {category.priceRange && (
+          <p className="text-sm text-gray-400 mb-4">
+            {category.priceRange}
+          </p>
+        )}
 
         {/* Arrow */}
-        <div className="flex items-center gap-2 text-gold">
+        <div className={`flex items-center gap-2 text-gold ${!category.priceRange ? 'mt-4' : ''}`}>
           <div className="w-8 h-0.5 bg-gold" />
           <svg
             className="w-4 h-4"

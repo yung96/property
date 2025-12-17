@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { PropertyCard } from '../shared/ui/PropertyCard';
 import { BackButton } from '../shared/ui/BackButton';
-import { CATEGORIES } from '../shared/constants/cities';
+import { CITIES } from '../shared/constants/cities';
 import { MOCK_PROPERTIES } from '../shared/constants/mockData';
 import { Header } from '../widgets/Header';
 
@@ -12,7 +12,9 @@ export const PropertiesListPage = () => {
   const { cityId, categoryId } = useParams();
   const [properties, setProperties] = useState([]);
 
-  const category = CATEGORIES.find((c) => c.id === categoryId);
+  // Получаем город и его категории
+  const city = Object.values(CITIES).find((c) => c.id === cityId);
+  const category = city?.categories.find((c) => c.id === categoryId);
 
   useEffect(() => {
     // Фильтрация объектов по городу и категории
@@ -46,9 +48,11 @@ export const PropertiesListPage = () => {
           <h1 className="text-2xl font-bold text-white mb-1">
             {category?.title}
           </h1>
-          <p className="text-gold text-sm">
-            {category?.priceRange}
-          </p>
+          {category?.priceRange && (
+            <p className="text-gold text-sm">
+              {category.priceRange}
+            </p>
+          )}
           <p className="text-gray-400 text-sm mt-2">
             Найдено объектов: {properties.length}
           </p>

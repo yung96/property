@@ -1,17 +1,5 @@
-export const CITIES = {
-  SOCHI: {
-    id: 'sochi',
-    name: 'Сочи',
-    image: 'https://avatars.mds.yandex.net/i?id=7a944392e8cf65be04198167d379d448_l-5886407-images-thumbs&n=13',
-  },
-  CRIMEA: {
-    id: 'crimea',
-    name: 'Крым',
-    image: 'https://a.d-cd.net/0uATU22TbyaSgfDPMq0oZXWgsMc-1920.jpg',
-  },
-};
-
-export const CATEGORIES = [
+// Категории для Сочи (с ценами)
+const SOCHI_CATEGORIES = [
   {
     id: 'houses-10-30',
     title: 'Дома',
@@ -93,4 +81,41 @@ export const CATEGORIES = [
     maxPrice: 2000,
   },
 ];
+
+// Категории для Крыма (без цен)
+const CRIMEA_CATEGORIES = [
+  {
+    id: 'crimea-new-buildings',
+    title: 'Новостройки',
+    type: 'new-buildings',
+  },
+  {
+    id: 'crimea-apartments',
+    title: 'Квартиры и апартаменты',
+    type: 'apartments',
+  },
+  {
+    id: 'crimea-houses',
+    title: 'Дома по всему Крыму',
+    type: 'houses',
+  },
+];
+
+export const CITIES = {
+  SOCHI: {
+    id: 'sochi',
+    name: 'Сочи',
+    image: 'https://avatars.mds.yandex.net/i?id=7a944392e8cf65be04198167d379d448_l-5886407-images-thumbs&n=13',
+    categories: SOCHI_CATEGORIES,
+  },
+  CRIMEA: {
+    id: 'crimea',
+    name: 'Крым',
+    image: 'https://a.d-cd.net/0uATU22TbyaSgfDPMq0oZXWgsMc-1920.jpg',
+    categories: CRIMEA_CATEGORIES,
+  },
+};
+
+// Для обратной совместимости (deprecated, используйте city.categories)
+export const CATEGORIES = SOCHI_CATEGORIES;
 
